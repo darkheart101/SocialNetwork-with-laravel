@@ -29,7 +29,7 @@ class UserController extends Controller{
     }
     
     public function postSignIn(Request $request){
-        /*$authArgs = [
+        $authArgs = [
             'email' => $request['email'],
             'password' => $request['password']
         ];
@@ -37,8 +37,8 @@ class UserController extends Controller{
             return redirect()->route('dashboard');
         }else{
             return redirect()->back();
-        }*/
-        return redirect()->route('dashboard');
+        }
+        
     }
     
 }

@@ -10,14 +10,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>Sign Up</h3>
-                    <form action="#" method="post">
-                        <div class="form-group {{ $errors->has('email') ? 'has-error': ''}}">
+                    <form action="signup" method="post">
+                        <div class="form-group ">
                             <label for="email">Your E-Mail</label>
-                            <input class="form-control" type="text" name="email" id="email" value="{{ Request::old('email')}}">
+                            <input class="form-control" type="text" name="email" id="email" value="">
                         </div>                        
                         <div class="form-group">
                             <label for="first_name">Your First Name</label>
-                            <input class="form-control" type="text" name="first_name" id="first_name" value="{{ Request::old('first_name')}}">
+                            <input class="form-control" type="text" name="first_name" id="first_name" value="">
                         </div>
                         <div class="form-group">
                             <label for="password">Your Password</label>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-md-6">
                     <h3>Sign In</h3>
-                    <form action="#" method="post">
+                    <form action="signin" method="post">
                         <div class="form-group">
                             <label for="email">Your E-Mail</label>
                             <input class="form-control" type="text" name="email" id="email">

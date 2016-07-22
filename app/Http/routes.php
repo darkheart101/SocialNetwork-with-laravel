@@ -12,12 +12,21 @@
 */
 
 Route::get('/', function () {
-        return view('welcome');
+	if(Auth::user()){
+		return redirect('dashboard');
+	}else{
+      	return view('welcome');
+    }
 });
 
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
     'as' => 'dashboard'
+]);
+
+Route::get('/logout', [
+    'uses' => 'UserController@userLogout',
+    'as' => 'logout'
 ]);
 
 Route::post('/signup', [
@@ -28,5 +37,10 @@ Route::post('/signup', [
 Route::post('/signin', [
     'uses' => 'UserController@postSignIn',
     'as' => 'signin'
+]);
+
+Route::post('/poststatus', [
+    'uses' => 'PostController@postStatus',
+    'as' => 'poststatus'
 ]);
 

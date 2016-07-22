@@ -6,6 +6,11 @@
 
 @section('content')
  <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <img src="{{ URL::asset("img/map.jpg") }}" class="img-responsive"/>
+                </div>
+            </div>
             
             <div class="row">
                 <div class="col-md-6">

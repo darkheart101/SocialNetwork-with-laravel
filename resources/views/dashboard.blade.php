@@ -34,6 +34,10 @@
 			@foreach($posts as $post)
 				<p>{{ $post->body }}</p>
 				<small><b>Posted by</b> {{ $post->user->first_name }} on <i>{{ $post->created_at->format('Y-m-d') }}</i></small>
+				<p><a href="#">Like</a> 
+				@if(Auth::user() == $post->user)	
+					| <a href="#">Edit </a> | <a href="#">Delete</a></p>
+				@endif
 			@endforeach
 			</div>
 		</div>

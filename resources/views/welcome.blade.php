@@ -8,7 +8,7 @@
  <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                <img src="{{ URL::asset("img/map.jpg") }}" class="img-responsive"/>
+                    <center><img src="{{ URL::asset("img/map.jpg") }}" class="img-responsive"/></center>
                 </div>
             </div>
             @if (count($errors) > 0)

@@ -50,6 +50,7 @@ class UserController extends Controller{
     }
     
     public function postSignIn(Request $request){
+        $errorMessage = "Wrong Username or Password!";
         $authArgs = [
             'email' => $request['email'],
             'password' => $request['password']
@@ -57,7 +58,7 @@ class UserController extends Controller{
         if(Auth::attempt($authArgs)){
             return redirect()->route('dashboard');
         }else{
-            return redirect()->back();
+            return redirect()->back()->with(['message' => 'Wrong Username or Password']);    
         }
         
     }

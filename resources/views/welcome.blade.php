@@ -11,7 +11,30 @@
                 <img src="{{ URL::asset("img/map.jpg") }}" class="img-responsive"/>
                 </div>
             </div>
-            
+            @if (count($errors) > 0)
+            <div class="row">
+                <div class="col-md-12">            
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div> 
+                </div>
+            </div>     
+            @endif   
+            @if(Session::has('message'))
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        <ul>    
+                            <li>{{ Session::get('message') }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="row">
                 <div class="col-md-6">
                     <h3>Sign Up</h3>

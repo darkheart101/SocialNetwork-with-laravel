@@ -58,9 +58,9 @@
 			@foreach($posts as $post)
 				<p>{{ $post->body }}</p>
 				<small><b>Posted by</b> {{ $post->user->first_name }} on <i>{{ $post->created_at->format('Y-m-d') }}</i></small>
-				<p><a href="#">Like</a> 
+				<p><a data-toggle="modal" data-target="#myModal" href="#">Like</a> 
 				@if(Auth::user() == $post->user)	
-					| <a href="#">Edit </a> | <a href="{{ 
+					| <a data-toggle="modal" id="edit" data-target="#myModal" href="#">Edit </a> | <a href="{{ 
 					url('deletestatus/'.$post->id)
 					}}">Delete</a></p>
 				@endif
@@ -69,7 +69,27 @@
 			</div>
 		</div>
 	</div>
-
-
+	<script>
+		//TODO: get the edit body value
+		
+	</script>
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+	    <!-- Modal content-->
+	    	<div class="modal-content">
+	    		<div class="modal-header">
+	        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        		<h4 class="modal-title">Edit your status</h4>
+	      		</div>
+	      		<div class="modal-body">
+	        		<p>{{ $post->body }}</p>
+	      		</div>
+	      		<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      		</div>
+	    	</div>
+	 	</div>
+	</div>
 
 	@endsection

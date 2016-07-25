@@ -44,3 +44,5 @@ Route::post('/poststatus', [
     'as' => 'poststatus'
 ]);
 
+Route::get('deletestatus/{id}', 'PostController@deletestatus');
+

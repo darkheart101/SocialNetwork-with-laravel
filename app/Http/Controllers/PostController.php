@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller{
     
     public function postStatus(Request $request){
+         $this->validate($request, [
+            'status'=> 'required'
+        ]);
+
         if(Auth::user()){
             $post = new Post();
             $post->body = $request['status'];
@@ -22,5 +26,19 @@ class PostController extends Controller{
         }
 
     }
+
+    public function deleteStatus(Request $request,$id){
+
+
+        if(Auth::user()){
+            //$post = \DB::table('posts')->where('id',$id)->first();
+            $post =Post::where('id',$id)->first();
+            $post->delete();
+            return redirect('dashboard')->with(['message' => 'Message Deleted!']);    
+        }else{
+            return redirect('/');    
+        }
+
+    }    
     
 }

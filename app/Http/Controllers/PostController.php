@@ -49,7 +49,6 @@ class PostController extends Controller{
 
 
         if(Auth::user()){
-            //$post = \DB::table('posts')->where('id',$id)->first();
             $post =Post::where('id',$id)->first();
             $post->delete();
             return redirect('dashboard')->with(['message' => 'Message Deleted!']);    

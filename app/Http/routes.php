@@ -19,6 +19,14 @@ Route::get('/', function () {
     }
 });
 
+Route::get('/profile', function () {
+    if(Auth::user()){
+        return view('profile');
+    }else{
+        return view('welcome');
+    }
+});
+
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
     'as' => 'dashboard'
@@ -28,6 +36,7 @@ Route::get('/logout', [
     'uses' => 'UserController@userLogout',
     'as' => 'logout'
 ]);
+
 
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',

@@ -1,7 +1,7 @@
 	@extends('layouts.master')
 
 	@section('title')
-	Logged In
+		The Social Network
 	@endsection
 
 	@section('content')
@@ -72,9 +72,7 @@
 	</div>
 
 	<style>
-		textarea {
- 	   		resize: none;
-		}
+
 	</style>
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">

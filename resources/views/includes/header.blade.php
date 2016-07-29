@@ -19,6 +19,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul class="nav navbar-nav navbar-right"   >
               @if (Auth::user())
+                <li><a href="profile">{{ Auth::user()->first_name }}</a></li>
+                <li><a href="dashboard">Home</a></li>
                 <li><a href="logout">Logout</a></li>
               @endif  
               </ul>

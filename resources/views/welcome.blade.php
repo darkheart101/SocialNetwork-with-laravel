@@ -48,9 +48,31 @@
                             <input class="form-control" type="text" name="first_name" id="first_name" value="">
                         </div>
                         <div class="form-group">
+                            <label for="last_name">Your Last Name</label>
+                            <input class="form-control" type="text" name="last_name" id="last_name" value="">
+                        </div>
+                        <div class="form-group">
                             <label for="password">Your Password</label>
                             <input class="form-control" type="password" name="password" id="password">
                         </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Date of Birth">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">Sex</label>
+                            <div class="col-xs-9">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="sex" value="male" /> Male
+                                    </label>
+                                    <label class="btn btn-default">
+                                        <input type="radio" name="sex" value="female" /> Female
+                                    </label>
+                                </div>
+                            </div>
+                        </div>      
+                        <br/>  <br/>                 
                         <button type="submit" class="btn btn-primary">Submit</button>
                         <input type="hidden" name="_token" value="{{ Session::token() }}">
                     </form>

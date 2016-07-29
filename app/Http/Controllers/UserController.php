@@ -31,15 +31,23 @@ class UserController extends Controller{
             'password'=> 'required|min:4'
         ]);
         
-        $email = $request['email'];
         $first_name = $request['first_name'];
+        $last_name = $request['last_name'];
+        $email = $request['email'];
         $password = bcrypt($request['password']);
-        
+        $birthday = $request['birthday'];
+        $sex = $request['sex'];
+
+
+
         $user = new User();
-        $user->email = $email;
         $user->first_name = $first_name;
+        $user->last_name = $last_name;
+        $user->email = $email;
         $user->password = $password;
-        
+        $user->birthday = $birthday;
+        $user->sex = $sex;
+
         $user->save();
         Auth::login($user);
         //return redirect()->route('dashboard');

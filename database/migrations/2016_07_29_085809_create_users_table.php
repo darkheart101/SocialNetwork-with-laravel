@@ -16,9 +16,12 @@ class CreateUsersTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
+			$table->string('first_name');
+            $table->string('last_name');
             $table->string('email');
-            $table->string('first_name');
             $table->string('password');
+            $table->date('birthday');
+            $table->enum('sex', array('Male', 'Female'));
             $table->rememberToken();
 		});
 	}

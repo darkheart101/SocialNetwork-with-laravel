@@ -27,6 +27,24 @@ class PostController extends Controller{
 
     }
 
+    public function editStatus(Request $request){
+        $this->validate($request, [
+            'editstatus'=> 'required'
+        ]);
+        $id = $request['postide'];
+        if(Auth::user()){
+            $post =Post::where('id',$id)->first();
+            $post->body = $request['editstatus'];
+            $request->user()->posts()->save($post);
+
+            //Auth::login($user);
+            return redirect('dashboard');
+        }else{
+            return redirect('/');    
+        }
+
+    }
+
     public function deleteStatus(Request $request,$id){
 
 

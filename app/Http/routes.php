@@ -27,6 +27,14 @@ Route::get('/profile', function () {
     }
 });
 
+Route::get('/editprofile', function () {
+    if(Auth::user()){
+        return view('editprofile');
+    }else{
+        return view('welcome');
+    }
+});
+
 Route::get('/dashboard', [
     'uses' => 'UserController@getDashboard',
     'as' => 'dashboard'
@@ -41,6 +49,11 @@ Route::get('/logout', [
 Route::post('/signup', [
     'uses' => 'UserController@postSignUp',
     'as' => 'signup'
+]);
+
+Route::post('/edityourprofile', [
+    'uses' => 'UserController@editYourProfile',
+    'as' => 'edityourprofile'
 ]);
 
 Route::post('/signin', [

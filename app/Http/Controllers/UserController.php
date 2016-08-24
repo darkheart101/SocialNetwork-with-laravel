@@ -28,6 +28,7 @@ class UserController extends Controller{
          $this->validate($request, [
             'email'=> 'email|unique:users|required',
             'first_name' => 'required|max:120',
+            'last_name' => 'required|max:120',
             'password'=> 'required|min:4'
         ]);
         
@@ -54,6 +55,36 @@ class UserController extends Controller{
         //return redirect()->view('dashboard');
         //return Redirect::to('dashboard');
         return redirect('dashboard');
+        
+    }
+
+    public function editYourProfile(Request $request){
+
+        $this->validate($request, [
+            'first_name' => 'max:120',
+            'last_name' => 'max:120'
+        ]);
+        /*$user = new User();
+        
+        $user->first_name = $first_name;
+        $user->update();
+        */
+        $id = $request['userid'];
+        $first_name = $request['first_name'];
+        $last_name = $request['last_name'];
+        $user = new User();
+
+        if(!empty($first_name)) {
+            $user::where('id', $id)
+            ->update(['first_name' => $first_name]);
+        }
+
+        if(!empty($last_name)) {
+            $user::where('id', $id)
+            ->update(['last_name' => $last_name]);
+        }
+
+        return redirect('profile');
         
     }
     

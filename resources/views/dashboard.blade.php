@@ -58,7 +58,7 @@
 			<div class="col-md-12">
 				<p>{{ $post->body }}</p>
 				<small><b>Posted by</b> {{ $post->user->first_name }} on <i>{{ $post->created_at->format('Y-m-d') }}</i></small>
-				<p><a data-toggle="modal" data-target="#myModal" href="#">Like</a> 
+				<p><a href="#">Like</a> 
 				@if(Auth::user() == $post->user)	
 					| <a data-toggle="modal" id="edit" onclick="statusBody(this)" data-target="#myModal" href="#">Edit </a> | <a href="{{ 
 					url('deletestatus/'.$post->id)

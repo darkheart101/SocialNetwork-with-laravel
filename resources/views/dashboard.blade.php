@@ -54,9 +54,15 @@
 	</div>
 	<div class="container">
 		<div class="row">
+		
 		@foreach($posts as $post)
 			<div class="col-md-12">
-				<p>{{ $post->body }}</p>
+				
+				@if (strlen(strstr($post->body, 'https://www.youtube.com/embed'))>0)
+					<p><iframe width="420" height="315" src="{{ $post->body }}" frameborder="0" allowfullscreen></iframe></p>
+				@else
+					<p> {{ $post->body }}</p>
+				@endif
 				<small><b>Posted by</b> {{ $post->user->first_name }} on <i>{{ $post->created_at->format('Y-m-d') }}</i></small>
 				<p><a href="#">Like</a> 
 				@if(Auth::user() == $post->user)	

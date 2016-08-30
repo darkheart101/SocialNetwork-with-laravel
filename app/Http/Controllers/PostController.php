@@ -13,10 +13,21 @@ class PostController extends Controller{
          $this->validate($request, [
             'status'=> 'required'
         ]);
+        $status = $request['status'];
 
         if(Auth::user()){
             $post = new Post();
-            $post->body = $request['status'];
+            
+            if (strlen(strstr($status, 'https://www.youtube.com/watch?'))>0){
+                $video_id = explode("?v=", $status); // For videos like http://www.youtube.com/watch?v=...
+                if (empty($video_id[1]))
+                    $video_id = explode("/v/", $status); // For videos like http://www.youtube.com/watch/v/..
+
+                $video_id = explode("&", $video_id[1]); // Deleting any other params
+                $status = 'https://www.youtube.com/embed/'.$video_id[0];
+            }
+
+            $post->body = $status;
             $request->user()->posts()->save($post);
 
             //Auth::login($user);

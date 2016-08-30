@@ -72,6 +72,7 @@ class UserController extends Controller{
         $id = $request['userid'];
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
+        $sex = $request['sex'];
         $user = new User();
 
         if(!empty($first_name)) {
@@ -82,6 +83,11 @@ class UserController extends Controller{
         if(!empty($last_name)) {
             $user::where('id', $id)
             ->update(['last_name' => $last_name]);
+        }
+        
+        if(!empty($sex)) {
+            $user::where('id', $id)
+            ->update(['sex' => $sex]);
         }
 
         return redirect('profile');

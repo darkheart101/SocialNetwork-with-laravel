@@ -120,6 +120,25 @@ $(document).ready(function() {
   <input  class="form-control" type="text" name="first_name" id="first_name" placeholder="{{ Auth::user()->first_name }}">
   <label for="last_name">Last Name:</label>
   <input class="form-control" type="text" name="last_name" id="last_name" placeholder="{{ Auth::user()->last_name }}">
+
+</div>
+<div class="form-group">
+  <div class="btn-group" data-toggle="buttons">
+                            @if(Auth::user()->sex == "Male")
+                              <label class="btn btn-default active">
+                            @else
+                              <label class="btn btn-default">
+                            @endif
+                                <input type="radio" name="sex" value="male" /> Male
+                            </label>
+                            @if(Auth::user()->sex == "Female")
+                              <label class="btn btn-default active">
+                            @else
+                              <label class="btn btn-default">
+                            @endif
+                                <input type="radio" name="sex" value="female" /> Female
+                            </label>
+</div>
 </div>
 <!--
 <div class="form-group">

@@ -86,20 +86,28 @@ $(document).ready(function() {
     </div>
     <div class="panel-body">
       <div class="row">
-            @if(Auth::user()->sex == "Male")
+      @if(Auth::user()->profile_picture == "default.jpg")
+        @if(Auth::user()->sex == "Male")
             
-          <div class="col-md-3 col-lg-3 " align="center"> 
-          <img alt="User Pic" src="{{ URL::asset("img/m/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
-          <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
+        <div class="col-md-3 col-lg-3 " align="center"> 
+        <img alt="User Pic" src="{{ URL::asset("img/m/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
+        <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
-     @endif
-     @if(Auth::user()->sex == "Female")
+        @endif
+        @if(Auth::user()->sex == "Female")
           
           <div class="col-md-3 col-lg-3 " align="center"> 
           <img alt="User Pic" src="{{ URL::asset("img/f/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
           <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
-     @endif
+        @endif
+      @else
+          <div class="col-md-3 col-lg-3 " align="center"> 
+          <img alt="User Pic" src="{{ route('account.image', Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
+          <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
+          </div>
+      @endif
+
         
               <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
                 <dl>
@@ -114,7 +122,7 @@ $(document).ready(function() {
                 </dl>
               </div>-->
               <div class=" col-md-9 col-lg-9 "> 
-              <form method="post" action="edityourprofile">
+              <form method="post" enctype="multipart/form-data" action="edityourprofile">
 <div class="form-group">
   <label for="first_name">Name:</label>
   <input  class="form-control" type="text" name="first_name" id="first_name" placeholder="{{ Auth::user()->first_name }}">
@@ -124,21 +132,26 @@ $(document).ready(function() {
 </div>
 <div class="form-group">
   <div class="btn-group" data-toggle="buttons">
-                            @if(Auth::user()->sex == "Male")
-                              <label class="btn btn-default active">
-                            @else
-                              <label class="btn btn-default">
-                            @endif
-                                <input type="radio" name="sex" value="male" /> Male
-                            </label>
-                            @if(Auth::user()->sex == "Female")
-                              <label class="btn btn-default active">
-                            @else
-                              <label class="btn btn-default">
-                            @endif
-                                <input type="radio" name="sex" value="female" /> Female
-                            </label>
+    @if(Auth::user()->sex == "Male")
+      <label class="btn btn-default active">
+    @else
+      <label class="btn btn-default">
+    @endif
+        <input type="radio" name="sex" value="male" /> Male
+      </label>
+    @if(Auth::user()->sex == "Female")
+      <label class="btn btn-default active">
+    @else
+      <label class="btn btn-default">
+    @endif
+        <input type="radio" name="sex" value="female" /> Female
+    </label>
+  </div>
 </div>
+<div class="form-group">
+  <label for="profile-picture" class="btn btn-default btn-file">
+      <b>Profile Picture</b> <input  type="file" name="profile-picture" id="profile-picture" />
+  </label>
 </div>
 <!--
 <div class="form-group">

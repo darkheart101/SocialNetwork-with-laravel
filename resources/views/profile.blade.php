@@ -91,20 +91,27 @@ The Social Network
         <h3 class="panel-title">Profile</h3>
       </div>
       <div class="panel-body">
-      @if(Auth::user()->sex == "Male")
+      @if(Auth::user()->profile_picture == "default.jpg")
+        @if(Auth::user()->sex == "Male")
             
           <div class="col-md-3 col-lg-3 " align="center"> 
           <img alt="User Pic" src="{{ URL::asset("img/m/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
           <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
-     @endif
-     @if(Auth::user()->sex == "Female")
+        @endif
+        @if(Auth::user()->sex == "Female")
            
           <div class="col-md-3 col-lg-3 " align="center"> 
           <img alt="User Pic" src="{{ URL::asset("img/f/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
           <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
-     @endif
+        @endif
+      @else
+          <div class="col-md-3 col-lg-3 " align="center"> 
+          <img alt="User Pic" src="{{ route('account.image', Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
+          <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
+          </div>
+      @endif 
 
           
                 <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>

@@ -73,3 +73,8 @@ Route::post('/editstatus', [
 
 Route::get('deletestatus/{id}', 'PostController@deletestatus');
 
+Route::get('/userimage/{filename}',[
+    'uses'=> 'UserController@getUserImage',
+    'as' => 'account.image'
+]);
+

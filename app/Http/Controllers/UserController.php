@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
+
 
     
 class UserController extends Controller{
@@ -38,6 +43,7 @@ class UserController extends Controller{
         $password = bcrypt($request['password']);
         $birthday = $request['birthday'];
         $sex = $request['sex'];
+        
 
 
 
@@ -48,6 +54,7 @@ class UserController extends Controller{
         $user->password = $password;
         $user->birthday = $birthday;
         $user->sex = $sex;
+        
 
         $user->save();
         Auth::login($user);
@@ -73,6 +80,9 @@ class UserController extends Controller{
         $first_name = $request['first_name'];
         $last_name = $request['last_name'];
         $sex = $request['sex'];
+        $profile_picture = $request->file('profile-picture');
+
+        
         $user = new User();
 
         if(!empty($first_name)) {
@@ -88,6 +98,27 @@ class UserController extends Controller{
         if(!empty($sex)) {
             $user::where('id', $id)
             ->update(['sex' => $sex]);
+        }
+        
+        if($profile_picture){
+            echo "Success!!!";
+            $filename = $id . time().'.'.'jpg'; 
+            $user::where('id', $id)
+            ->update(['profile_picture' => $filename]);
+            Storage::disk('local')->put($filename,File::get($profile_picture));
+            
+            /*$filename = $id . time().'.'.'jpg'; 
+            Storage::disk('local')->put($filename,File::get($profile_picture));
+            //$rules = array('image' => 'required',);
+            //$destinationPath = '/img/'. $id; 
+            //$extension = Input::file('profile-picture')->getClientOriginalExtension();
+            //$fileName = $id . time().'.'.$extension;
+            //Input::file('profile-picture')->move($destinationPath, $fileName);
+            //Session::flash('success', 'Upload successfully'); 
+            $user::where('id', $id)
+            ->update(['profile_picture' => ]);
+            
+            */
         }
 
         return redirect('profile');
@@ -106,6 +137,12 @@ class UserController extends Controller{
             return redirect()->back()->with(['message' => 'Wrong Username or Password']);    
         }
         
+    }
+    
+    public function getUserImage($filename){
+
+        $file = Storage::disk('local')->get($filename);
+        return new Response($file,200);
     }
     
 }

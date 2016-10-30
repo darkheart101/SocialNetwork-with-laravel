@@ -94,14 +94,14 @@ The Social Network
       @if(Auth::user()->sex == "Male")
             
           <div class="col-md-3 col-lg-3 " align="center"> 
-          <img alt="User Pic" src="http://tkouleris.eu/images/fb.anon.male.jpg" class="img-circle img-responsive"> 
+          <img alt="User Pic" src="{{ URL::asset("img/m/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
           <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
      @endif
      @if(Auth::user()->sex == "Female")
            
           <div class="col-md-3 col-lg-3 " align="center"> 
-          <img alt="User Pic" src="http://tkouleris.eu/images/fb.anon.female.jpg" class="img-circle img-responsive"> 
+          <img alt="User Pic" src="{{ URL::asset("img/f/". Auth::user()->profile_picture) }}" class="img-circle img-responsive"> 
           <!--<img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> -->
           </div>
      @endif

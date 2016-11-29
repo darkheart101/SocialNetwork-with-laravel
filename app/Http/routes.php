@@ -27,6 +27,8 @@ Route::get('/profile', function () {
     }
 });
 
+Route::get('/userprofile/{id}', 'UserController@getUser');
+
 Route::get('/editprofile', function () {
     if(Auth::user()){
         return view('editprofile');

@@ -22,6 +22,22 @@ class UserController extends Controller{
             return view('welcome');
         }
     }
+
+    public function getUser($id){
+        $user = User::where('id',$id)->first();
+        /*
+        $user->id
+        $user->first_name
+        $user->last_name
+        */
+        return view('userprofile', ['user' => $user]);
+        /*
+        echo "<pre>";
+        print_r($user);
+        echo "</pre>";
+        exit();
+        */
+    }
     
     public function userLogout(Request $request){
         Auth::logout();

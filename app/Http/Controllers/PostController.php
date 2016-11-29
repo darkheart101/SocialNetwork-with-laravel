@@ -58,7 +58,6 @@ class PostController extends Controller{
 
     public function deleteStatus(Request $request,$id){
 
-
         if(Auth::user()){
             $post =Post::where('id',$id)->first();
             $post->delete();

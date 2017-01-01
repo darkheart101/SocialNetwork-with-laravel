@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -24,13 +25,19 @@ class UserController extends Controller{
     }
 
     public function getUser($id){
-        $user = User::where('id',$id)->first();
-        /*
-        $user->id
-        $user->first_name
-        $user->last_name
-        */
-        return view('userprofile', ['user' => $user]);
+
+        $info = array();
+
+        //$user = User::where('id',$id)->first();
+        $user = DB::table('users')->where('id',$id)->first();
+        //$post = Post::where('user_id',$id);
+        $info['user'] = $user;
+
+        $posts = DB::table('posts')->where('user_id',$id)->get();
+        
+        $info['posts'] = $posts;
+
+        return view('userprofile', ['info' => $info ] );
         /*
         echo "<pre>";
         print_r($user);
